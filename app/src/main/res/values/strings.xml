@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DoubleTest</string>
+    <string name="square_activity">Square activity</string>
 </resources>

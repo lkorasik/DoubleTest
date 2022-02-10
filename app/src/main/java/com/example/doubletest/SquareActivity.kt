@@ -1,13 +1,10 @@
 package com.example.doubletest
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class SquareActivity: AppCompatActivity() {
     private lateinit var counterView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +13,10 @@ class MainActivity : AppCompatActivity() {
 
         counterView = findViewById(R.id.counter)
         counterView.text = 0.toString()
+
+        var counter = intent.getIntExtra(COUNTER_KEY, 0).toLong()
+        counter *= counter
+        counterView.text = counter.toString()
 
         LogExtension.i("onCreate")
     }
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putInt(COUNTER_KEY, counterView.text.toString().toInt() + 1)
+        outState.putLong(COUNTER_KEY, counterView.text.toString().toLong())
 
         LogExtension.i("onSaveInstanceState")
     }
@@ -67,29 +68,12 @@ class MainActivity : AppCompatActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
 
-        counterView.text = savedInstanceState.getInt(COUNTER_KEY).toString()
+        counterView.text = savedInstanceState.getLong(COUNTER_KEY).toString()
 
         LogExtension.i("onRestoreInstanceState")
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.base_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            R.id.square_activity -> {
-                val intent = Intent(this, SquareActivity::class.java)
-                intent.putExtra(COUNTER_KEY, counterView.text.toString().toInt())
-                startActivity(intent)
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    companion object {
+    companion object{
         const val COUNTER_KEY = "COUNTER"
     }
 }
