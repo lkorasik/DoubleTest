@@ -17,59 +17,59 @@ class MainActivity : AppCompatActivity() {
         counterView = findViewById(R.id.counter)
         counterView.text = 0.toString()
 
-        LogExtension.i("onCreate")
+        LogExtension.i(this, "onCreate")
     }
 
     override fun onStart() {
         super.onStart()
 
-        LogExtension.i("onStart")
+        LogExtension.i(this, "onStart")
     }
 
     override fun onRestart() {
         super.onRestart()
 
-        LogExtension.i("onRestart")
+        LogExtension.i(this, "onRestart")
     }
 
     override fun onResume() {
         super.onResume()
 
-        LogExtension.i("onResume")
+        LogExtension.i(this, "onResume")
     }
 
     override fun onPause() {
         super.onPause()
 
-        LogExtension.i("onPause")
+        LogExtension.i(this, "onPause")
     }
 
     override fun onStop() {
         super.onStop()
 
-        LogExtension.i("onStop")
+        LogExtension.i(this, "onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        LogExtension.i("onDestroy")
+        LogExtension.i(this, "onDestroy")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putInt(COUNTER_KEY, counterView.text.toString().toInt() + 1)
+        outState.putInt(IntentKeys.COUNTER_KEY, counterView.text.toString().toInt() + 1)
 
-        LogExtension.i("onSaveInstanceState")
+        LogExtension.i(this, "onSaveInstanceState")
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
 
-        counterView.text = savedInstanceState.getInt(COUNTER_KEY).toString()
+        counterView.text = savedInstanceState.getInt(IntentKeys.COUNTER_KEY).toString()
 
-        LogExtension.i("onRestoreInstanceState")
+        LogExtension.i(this, "onRestoreInstanceState")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -81,15 +81,11 @@ class MainActivity : AppCompatActivity() {
         return when(item.itemId) {
             R.id.square_activity -> {
                 val intent = Intent(this, SquareActivity::class.java)
-                intent.putExtra(COUNTER_KEY, counterView.text.toString().toInt())
+                intent.putExtra(IntentKeys.COUNTER_KEY, counterView.text.toString().toInt())
                 startActivity(intent)
-                return true
+                true
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    companion object {
-        const val COUNTER_KEY = "COUNTER"
     }
 }

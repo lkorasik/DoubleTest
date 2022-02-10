@@ -12,68 +12,63 @@ class SquareActivity: AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         counterView = findViewById(R.id.counter)
-        counterView.text = 0.toString()
 
-        var counter = intent.getIntExtra(COUNTER_KEY, 0).toLong()
+        var counter = intent.getIntExtra(IntentKeys.COUNTER_KEY, 0).toLong()
         counter *= counter
         counterView.text = counter.toString()
 
-        LogExtension.i("onCreate")
+        LogExtension.i(this, "onCreate")
     }
 
     override fun onStart() {
         super.onStart()
 
-        LogExtension.i("onStart")
+        LogExtension.i(this, "onStart")
     }
 
     override fun onRestart() {
         super.onRestart()
 
-        LogExtension.i("onRestart")
+        LogExtension.i(this, "onRestart")
     }
 
     override fun onResume() {
         super.onResume()
 
-        LogExtension.i("onResume")
+        LogExtension.i(this, "onResume")
     }
 
     override fun onPause() {
         super.onPause()
 
-        LogExtension.i("onPause")
+        LogExtension.i(this, "onPause")
     }
 
     override fun onStop() {
         super.onStop()
 
-        LogExtension.i("onStop")
+        LogExtension.i(this, "onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        LogExtension.i("onDestroy")
+        LogExtension.i(this, "onDestroy")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putLong(COUNTER_KEY, counterView.text.toString().toLong())
+        outState.putLong(IntentKeys.COUNTER_KEY, counterView.text.toString().toLong())
 
-        LogExtension.i("onSaveInstanceState")
+        LogExtension.i(this, "onSaveInstanceState")
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
 
-        counterView.text = savedInstanceState.getLong(COUNTER_KEY).toString()
+        counterView.text = savedInstanceState.getLong(IntentKeys.COUNTER_KEY).toString()
 
-        LogExtension.i("onRestoreInstanceState")
-    }
-
-    companion object{
-        const val COUNTER_KEY = "COUNTER"
+        LogExtension.i(this, "onRestoreInstanceState")
     }
 }
