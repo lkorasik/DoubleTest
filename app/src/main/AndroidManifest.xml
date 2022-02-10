@@ -11,6 +11,7 @@
         android:theme="@style/Theme.DoubleTest">
         <activity
             android:name=".MainActivity"
+            android:label="@string/counter_activity_label"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,7 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SquareActivity"/>
+        <activity
+            android:label="@string/square_activity_label"
+            android:name=".SquareActivity"/>
     </application>
 
 </manifest>

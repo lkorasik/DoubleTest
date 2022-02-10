@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         counterView = findViewById(R.id.counter)
         counterView.text = 0.toString()
+        counterView.text = Int.MAX_VALUE.toString()
 
         LogExtension.i(this, "onCreate")
     }
@@ -80,8 +81,9 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.square_activity -> {
-                val intent = Intent(this, SquareActivity::class.java)
-                intent.putExtra(IntentKeys.COUNTER_KEY, counterView.text.toString().toInt())
+                val intent = Intent(this, SquareActivity::class.java).apply {
+                    putExtra(IntentKeys.COUNTER_KEY, counterView.text.toString().toInt())
+                }
                 startActivity(intent)
                 true
             }

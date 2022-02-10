@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">DoubleTest</string>
+
+    <string name="counter_activity_label">Activity with counter</string>
+    <string name="square_activity_label">Activity with counter^2</string>
+
     <string name="square_activity">Square activity</string>
 </resources>
