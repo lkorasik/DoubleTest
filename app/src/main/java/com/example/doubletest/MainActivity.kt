@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
 
         counterView = findViewById(R.id.counter)
         counterView.text = 0.toString()
-        counterView.text = Int.MAX_VALUE.toString()
 
         LogExtension.i(this, "onCreate")
     }
